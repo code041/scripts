@@ -15,11 +15,11 @@ function configRepo{
     Invoke-Expression $command
 }
 
-#configRepo -repo $libraryName -owner "code041" -visibility "private" -destinationFolder $destinationFolder
+configRepo -repo $libraryName -owner "code041" -visibility "private" -destinationFolder $destinationFolder
 
 Set-Location $destinationFolder
 git checkout -b library-init
-npm init --yes $libraryName --scripts "start: node index.js"
+npm init --yes
 npm install typescript --save-dev
 npx tsc --init
 git add .
