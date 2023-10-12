@@ -11,10 +11,12 @@ function configRepo{
         [string]$visibility
     )
     Write-Host "Executando o script git-flow.ps1"
-    & .\\git-flow\git-flow.ps1 -repo $repo -owner $owner -destinationFolder $destinationFolder -visibility $visibility
+    $command = "..\git-flow\git-flow.ps1 -repo $repo -owner $owner -destinationFolder $destinationFolder -visibility $visibility"
+    Invoke-Expression $command
 }
 
-configRepo -repo $libraryName -owner "code041" -visibility "private" -destinationFolder $destinationFolder
+#configRepo -repo $libraryName -owner "code041" -visibility "private" -destinationFolder $destinationFolder
+
 Set-Location $destinationFolder
 git checkout -b library-init
 npm init --yes $libraryName --scripts "start: node index.js"
